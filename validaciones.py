@@ -30,3 +30,12 @@ def validar_nota(nota_str):
             return False, "La nota debe estar entre 0 y 10."
     except ValueError:
         return False, "La nota debe ser un número válido (ej. 8.5)."
+    
+def validar_nombre_o_apellidos(texto):
+    """
+    Valida que el nombre o apellidos no estén vacíos después de limpiar.
+    """
+    texto_limpio = limpiar_texto(texto)
+    if len(texto_limpio) == 0:
+        return False, "El campo no puede estar vacío."
+    return True, texto_limpio
