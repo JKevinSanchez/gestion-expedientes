@@ -17,3 +17,16 @@ def validar_id(id_str):
         return True, id_num
     except ValueError:
         return False, "El ID debe ser un número válido."
+
+def validar_nota(nota_str):
+    """
+    Valida que la nota sea un número entre 0 y 10.
+    """
+    try:
+        nota_num = float(nota_str)
+        if 0 <= nota_num <= 10:
+            return True, round(nota_num, 2)
+        else:
+            return False, "La nota debe estar entre 0 y 10."
+    except ValueError:
+        return False, "La nota debe ser un número válido (ej. 8.5)."
