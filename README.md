@@ -1,1 +1,2 @@
-# gestion-expedientes
+# Sistema de Gestión de Expedientes Académicos (ASIR)
+Este proyecto es una aplicación de consola desarrollada en Python diseñada para la gestión integral de expedientes de alumnos. Permite realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) sobre un sistema de persistencia basado en ficheros de texto plano.
