@@ -39,3 +39,52 @@ El código se organiza de forma modular para separar la lógica de negocio de la
     * *Función:* Script diseñado para generar expedientes aleatorios de prueba y guardarlos directamente en `expedientes.txt`.
 * **`config.py`** – *Descripción:* Archivo global de configuración.
     * *Función:* Define constantes esenciales, rutas físicas de guardado y asignaturas válidas del curso.
+
+---
+
+##  Instalación y Uso
+
+1. **Clonar el repositorio**
+    * Puedes descargar el código del proyecto ejecutando en tu terminal:
+    ```bash
+    git clone [https://github.com/JKevinSanchez/gestion-expedientes.git](https://github.com/JKevinSanchez/gestion-expedientes.git)
+    cd gestion-expedientes
+    ```
+2. **Preparar el entorno operativo**
+    * El sistema automatizado de *bootstrap* creará los directorios necesarios al iniciar:
+        * `data/` (Para el almacenamiento del archivo maestro).
+        * `logs/` (Para el registro técnico de excepciones).
+3. **Generar datos de prueba (Opcional)**
+    * Si deseas poblar la base de datos con registros simulados de forma masiva:
+    ```bash
+    python generador_datos.py
+    ```
+4. **Lanzar la aplicación**
+    * Para iniciar el bucle interactivo del menú de consola:
+    ```bash
+    python main.py
+    ```
+
+---
+
+##  Formato de los Datos
+
+La persistencia de la información en el fichero plano `data/expedientes.txt` sigue un protocolo estricto de doble delimitación por subniveles:
+
+* **Sintaxis de la línea:**
+    * `ID;Nombre;Apellidos;Curso;Asignatura1:Nota1,Asignatura2:Nota2`
+* **Ejemplo de registro real:**
+    * `1;Alejandro;Garcia;1º ASIR;Programacion:8.5,Redes:7.0`
+
+---
+
+##  Autores
+
+El desarrollo de los diferentes componentes de la aplicación se organizó de forma equitativa entre los integrantes de 1º ASIR:
+
+* **Jacques Kevin Sánchez Guerra**
+    
+* **Fred Farit Bendezu Hernández**
+    
+* **Mario López Sánchez**
+   
