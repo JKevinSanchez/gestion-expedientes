@@ -8,6 +8,7 @@ def imprimir_cabecera():
     print("="*50)
 
 def solicitar_id(mensaje="Introduce el ID del alumno: "):
+    # Bucle infinito hasta que el usuario introduzca un ID con formato correcto
     while True:
         id_str = input(mensaje)
         valido, resultado = validaciones.validar_id(id_str)
@@ -31,7 +32,7 @@ def solicitar_notas():
         while True:
             nota_str = input(f"Nota para '{asig}': ").strip()
             if not nota_str:
-                break # Se salta la asignatura
+                break # Salta la asignatura actual sin registrar nota
             valido, resultado = validaciones.validar_nota(nota_str)
             if valido:
                 notas[asig] = resultado
@@ -59,9 +60,7 @@ def opcion_crear():
     nombre = solicitar_texto("Nombre del alumno: ")
     apellidos = solicitar_texto("Apellidos del alumno: ")
     
-    # El curso es fijo para esta adaptación
     curso = config.CURSO_ACTUAL
-    
     notas = solicitar_notas()
     
     datos = {
@@ -75,11 +74,11 @@ def opcion_crear():
     try:
         exito, msg = gestor_expedientes.crear_expediente(datos)
         if exito:
-            print(f"\n✅ {msg}")
+            print(f"\n[OK] {msg}")
         else:
-            print(f"\n❌ No se pudo crear: {msg}")
+            print(f"\n[ERROR] No se pudo crear: {msg}")
     except Exception as e:
-        print(f"\n❌ Error del sistema: {e}")
+        print(f"\n[ERROR DEL SISTEMA] {e}")
 
 def opcion_listar():
     print("\n--- Listado de Expedientes ---")
@@ -92,7 +91,7 @@ def opcion_listar():
         for exp in expedientes:
             mostrar_expediente(exp)
     except Exception as e:
-        print(f"\n❌ Error al leer los expedientes: {e}")
+        print(f"\n[ERROR] Al leer los expedientes: {e}")
 
 def opcion_buscar():
     print("\n--- Buscar Expediente ---")
@@ -102,9 +101,9 @@ def opcion_buscar():
         if exp:
             mostrar_expediente(exp)
         else:
-            print("\n❌ Expediente no encontrado.")
+            print("\n[INFO] Expediente no encontrado.")
     except Exception as e:
-        print(f"\n❌ Error al buscar el expediente: {e}")
+        print(f"\n[ERROR] Al buscar el expediente: {e}")
 
 def opcion_actualizar():
     print("\n--- Actualizar Expediente ---")
@@ -112,7 +111,7 @@ def opcion_actualizar():
     try:
         exp_actual = gestor_expedientes.buscar_expediente(id_actualizar)
         if not exp_actual:
-            print("\n❌ Expediente no encontrado.")
+            print("\n[INFO] Expediente no encontrado.")
             return
             
         print("\nExpediente actual:")
@@ -148,12 +147,12 @@ def opcion_actualizar():
         
         exito, msg = gestor_expedientes.actualizar_expediente(id_actualizar, datos_actualizados)
         if exito:
-            print(f"\n✅ {msg}")
+            print(f"\n[OK] {msg}")
         else:
-            print(f"\n❌ No se pudo actualizar: {msg}")
+            print(f"\n[ERROR] No se pudo actualizar: {msg}")
             
     except Exception as e:
-        print(f"\n❌ Error al actualizar el expediente: {e}")
+        print(f"\n[ERROR] Al actualizar el expediente: {e}")
 
 def opcion_eliminar():
     print("\n--- Eliminar Expediente ---")
@@ -164,15 +163,16 @@ def opcion_eliminar():
         try:
             exito, msg = gestor_expedientes.eliminar_expediente(id_eliminar)
             if exito:
-                print(f"\n✅ {msg}")
+                print(f"\n[OK] {msg}")
             else:
-                print(f"\n❌ No se pudo eliminar: {msg}")
+                print(f"\n[ERROR] No se pudo eliminar: {msg}")
         except Exception as e:
-            print(f"\n❌ Error al eliminar el expediente: {e}")
+            print(f"\n[ERROR] Al eliminar el expediente: {e}")
     else:
         print("\nOperación cancelada.")
 
 def mostrar_menu():
+    # Bucle principal que mantiene la aplicación abierta hasta pulsar la opción de salida
     while True:
         imprimir_cabecera()
         print("1. Crear nuevo expediente")
@@ -198,4 +198,4 @@ def mostrar_menu():
             print("\n¡Gracias por usar el sistema! Hasta pronto.")
             break
         else:
-            print("\n❌ Opción no válida. Por favor, selecciona un número del 1 al 6.")
+            print("\n[INFO] Opción no válida. Por favor, selecciona un número del 1 al 6.")
